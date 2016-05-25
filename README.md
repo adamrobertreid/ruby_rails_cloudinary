@@ -105,6 +105,7 @@ and paste this in there.
       </div>
 ```
 
+
 ### 5. Configuration
 Setting the configuration parameters can be done globally using a cloudinary.yml configuration file, located under the config directory of your Rails project.
 
@@ -137,3 +138,20 @@ test:
 Now create a `secrets.sh` file in your app 
 ```bash
 touch /secrets.sh
+```
+
+in this folder add your API keys like so
+```ruby
+#!/bin/bash
+export cloud_key="123451277483254856795724365"
+export cloud_secret="fdsgtvdfsgsdfhtdhwrt_RStdPJk"
+```
+in Terminal add using (I need to double check this information with Travis)
+```bash
+source 
+```
+
+
+### 5. Sample projects from Cloudinary Docs
+
+[Cloudinary Sample Projects](http://cloudinary.com/)
