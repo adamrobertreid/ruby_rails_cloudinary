@@ -156,3 +156,12 @@ and paste this in there.
         </div>
       </div>
 ```
+
+### 5. Configuration
+Setting the configuration parameters can be done globally using a cloudinary.yml configuration file, located under the config directory of your Rails project.
+
+create a new file cloudinary.yml, in your config directory. This is where we will be storing your API key and API secret, 
+**REMEMBER** dont commit your API keys to gitHub.
+```bash
+touch /config/cloudinary.yml
+```
