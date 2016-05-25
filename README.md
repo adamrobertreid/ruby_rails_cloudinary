@@ -111,7 +111,29 @@ Setting the configuration parameters can be done globally using a cloudinary.yml
 create a new file cloudinary.yml, in your config directory. This is where we will be storing your API key and API secret, 
 **REMEMBER** dont commit your API keys to gitHub.
 ```bash
-touch /config/cloudinary.yml
+touch/config/cloudinary.yml
 ```
-
-in your readme
+next you will need to add ENV to hide your keys in cloudinary.yml like so =>
+```ruby
+development:
+  cloud_name: photo-app
+  api_key: <%= ENV["cloud_key"] %>
+  api_secret: <%= ENV["cloud_secret"] %>
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: photo-app
+  api_key: <%= ENV["cloud_key"] %>
+  api_secret: <%= ENV["cloud_secret"] %>
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: photo-app
+  api_key: <%= ENV["cloud_key"] %>
+  api_secret: <%= ENV["cloud_secret"] %>
+  enhance_image_tag: true
+  static_image_support: false
+```
+Now create a `secrets.sh` file in your app 
+```bash
+touch /secrets.sh
