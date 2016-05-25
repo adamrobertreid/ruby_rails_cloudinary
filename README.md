@@ -10,58 +10,6 @@ back through a super fast CDN. We will be using two gems in our app `'carrierwav
 * upload photo
 * display photo through CDN to DOM
 
-## Basic Ruby on Rails new App Setup
-
-Create a new rails app:
-```bash
-rails new photo -T -d postgresql
-cd photo
-```
-Create the databases:
-``` bash
-rake db:create
-```
-
-
-
-## Routes First
-
-Let's start with the routes for a user.
-
-`config/routes.rb`
-
-```ruby
-Rails.application.routes.draw do
-  root to: "users#index"
-end
-```
-```bash
-rake routes
-```
-
-## Users Controller 
-
-Let's go ahead and great a users controller
-```bash
-rails g controller users
-```
-
-## Users model
-
-```bash
-rails generate model Users user:string
-```
-```bash
-rake db:migrate
-```
-you schema will look like this
-```ruby
-  create_table "users", force: :cascade do |t|
-    t.string   "user"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-```
-
 
 # Cloudinary getting started guide
 
@@ -165,3 +113,5 @@ create a new file cloudinary.yml, in your config directory. This is where we wil
 ```bash
 touch /config/cloudinary.yml
 ```
+
+in your readme
