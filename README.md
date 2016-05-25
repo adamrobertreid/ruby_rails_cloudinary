@@ -93,6 +93,15 @@ this should give you a file in:
 app/uploaders/picture_uploader.rb
 ```
 
+add to /uploaders/picture_uploader.rb
+```ruby
+class PictureUploader < CarrierWave::Uploader::Base
+
+include Cloudinary::CarrierWave
+
+end
+```
+
 ### 3. ActiveRecord
 
 Add a string column to the model you want to mount the uploader by creating a migration:
@@ -102,8 +111,48 @@ Add a string column to the model you want to mount the uploader by creating a mi
 rails g migration add_picture_to_users picture:string
 rake db:migrate
 ```
+Open your model file and mount the uploader:
+
+```ruby
+class User < ActiveRecord::Base
+  mount_uploader :picture, PictureUploader
+end
+```
 
 
+### 4. Upload images & Create users view
 
-### 4. Upload images
+In our HTML form for Post editing, we add a File field for uploading the picture and also a hidden cache field for supporting page reloading and validation errors while not losing the uploaded picture.
+```ruby
+<%= form_for @user do |f| %>
+<%= f.file_field :picture %>
+<%= f.hidden_field(:picture_cache) %>
+<%= f.submit "Submit" %>
+<% end %>
+```
 
+This image tag works with cloudinary gem to handle getting your images from the cloud. We will use this in the next step.
+```ruby
+<%= cl_image_tag %>
+```
+
+in your views in '/app/views/users/index.html.erb' alternatively you could have a pictures views
+and paste this in there.
+```ruby
+<section class="picture-layout">
+  <header class="row bio-info">
+    <section class="picture">
+      <div class="col-sm-6 profile-1">
+        <div class="picture-img">
+          <%= cl_image_tag(@user.picture.url) %>
+          
+          <span style="vertical-align:middle">
+            <%= form_for @user do |f| %>
+            <%= f.file_field :picture %>
+            <%= f.hidden_field(:picture_cache) %>
+            <%= f.submit "Submit" %>
+            <% end %>
+          </span>
+        </div>
+      </div>
+```
