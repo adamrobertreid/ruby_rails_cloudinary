@@ -135,6 +135,16 @@ test:
   enhance_image_tag: true
   static_image_support: false
 ```
+
+Before you create `secrets.sh` **be sure you add it to the `.gitignore` file so that you don't accidentally commit the file.**  
+
+In `.gitignore`:
+```
+secrets.sh
+```
+
+Save and commit `.gitignore` **before proceeding**.
+
 Now create a `secrets.sh` file in your app 
 ```bash
 touch /secrets.sh
