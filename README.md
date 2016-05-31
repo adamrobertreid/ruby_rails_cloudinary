@@ -45,7 +45,7 @@ add to /uploaders/picture_uploader.rb
 ```ruby
 class PictureUploader < CarrierWave::Uploader::Base
 
-include Cloudinary::CarrierWave
+  include Cloudinary::CarrierWave
 
 end
 ```
@@ -115,7 +115,8 @@ create a new file cloudinary.yml, in your config directory. This is where we wil
 touch/config/cloudinary.yml
 ```
 next you will need to add ENV to hide your keys in cloudinary.yml like so =>
-```ruby
+
+```yaml
 development:
   cloud_name: photo-app
   api_key: <%= ENV["cloud_key"] %>
@@ -145,22 +146,36 @@ secrets.sh
 
 Save and commit `.gitignore` **before proceeding**.
 
-Now create a `secrets.sh` file in your app 
+
+Now create a `secrets.sh` file in your app directory
 ```bash
-touch /secrets.sh
+touch secrets.sh
 ```
 
 in this folder add your API keys like so
-```ruby
+
+```bash
 #!/bin/bash
 export cloud_key="123451277483254856795724365"
 export cloud_secret="fdsgtvdfsgsdfhtdhwrt_RStdPJk"
 ```
-in Terminal add using (I need to double check this information with Travis)
+
+in the Terminal add the environment variables by doing:
+
 ```bash
-source 
+source secrets.sh
+```
+> Remember that you have to `source secrets.sh` in every terminal that you need to use the environment variables.
+
+After sourcing the file you can see the environment variables are active by doing
+
+```bash
+echo $cloud_key
+echo $cloud_secret
 ```
 
+
+Finally now you can run your `rake` or `rails` commands.
 
 ### 5. Sample projects from Cloudinary Docs
 
